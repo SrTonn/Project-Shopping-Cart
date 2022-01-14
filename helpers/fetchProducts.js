@@ -12,3 +12,5 @@ if (typeof module !== 'undefined') {
     fetchProducts,
   };
 }
+
+// O Mário Fernando da Tribo B me ajudou a encontrar o problema na resposta do `catch` no fetch da API
