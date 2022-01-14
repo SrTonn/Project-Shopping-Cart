@@ -3,7 +3,7 @@ const fetchProducts = async (query) => {
   const dataObj = await fetch(API_URL)
     .then((response) => response.json())
     .then((data) => data)
-    .catch((error) => `Algo deu errado :( \n${error}`);
+    .catch((error) => error);
   return dataObj;
 };
 
