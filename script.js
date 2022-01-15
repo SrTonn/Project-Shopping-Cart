@@ -1,5 +1,6 @@
 const sectionItems = document.querySelector('.items');
 const olCart = document.querySelector('.cart__items');
+const buttonEmptyCart = document.querySelector('.empty-cart');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -42,6 +43,11 @@ function createCartItemElement({ sku, name, salePrice }) {
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
   return li;
+}
+
+function clearCartItems() {
+  olCart.innerHTML = '';
+  saveCartItems(olCart.innerHTML);
 }
 
 async function addItemToCart({ target }) {
