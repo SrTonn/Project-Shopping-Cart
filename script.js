@@ -1,4 +1,5 @@
 const sectionItems = document.querySelector('.items');
+const olCart = document.querySelector('.cart__items');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -49,6 +50,14 @@ async function init() {
     const sku = element.id;
     const image = element.thumbnail;
     sectionItems.appendChild(createProductItemElement({ name, sku, image }));
+  });
+
+  document.querySelectorAll('.item__add').forEach((button) => {
+    button.addEventListener('click', async (event) => {
+      const sku = event.target.parentNode.firstChild.innerText;
+      const { id, title, thumbnail } = await fetchItem(sku);
+      olCart.appendChild(createCartItemElement({ name: title, sku: id, image: thumbnail }));
+    });
   });
 }
 
