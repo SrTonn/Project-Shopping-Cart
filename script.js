@@ -53,8 +53,8 @@ async function init() {
   });
 
   document.querySelectorAll('.item__add').forEach((button) => {
-    button.addEventListener('click', async (event) => {
-      const sku = event.target.parentNode.firstChild.innerText;
+    button.addEventListener('click', async ({ target }) => {
+      const sku = getSkuFromProductItem(target.parentNode);
       const { id, title, thumbnail } = await fetchItem(sku);
       olCart.appendChild(createCartItemElement({ name: title, sku: id, image: thumbnail }));
     });
