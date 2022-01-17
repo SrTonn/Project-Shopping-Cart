@@ -1,4 +1,5 @@
 const sectionItems = document.querySelector('.items');
+const sectionLoading = document.querySelector('.loading');
 const olCart = document.querySelector('.cart__items');
 const buttonEmptyCart = document.querySelector('.empty-cart');
 const spanPriceTotal = document.querySelector('section > span');
@@ -79,8 +80,15 @@ function localStorageLoad() {
   updatePriceAtCart();
 }
 
+function removeLoadMsg() {
+  sectionLoading.remove();
+}
+
 async function init() {
   const { results } = await fetchProducts('computador');
+  if (!results) return;
+
+  removeLoadMsg();
   results.forEach((element) => {
     const name = element.title;
     const sku = element.id;
