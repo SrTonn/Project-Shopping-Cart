@@ -91,7 +91,7 @@ async function init() {
   results.forEach((element) => {
     const name = element.title;
     const sku = element.id;
-    const image = element.thumbnail;
+    const image = element.thumbnail.replace('I.jpg', 'W-webp');
     sectionItems.appendChild(createProductItemElement({ name, sku, image }));
   });
 
