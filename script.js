@@ -64,7 +64,6 @@ function clearCartItems() {
 }
 
 async function addItemToCart({ target }) {
-  console.log(spanPriceTotal);
   const sku = getSkuFromProductItem(target.parentNode);
   const { id, title, price } = await fetchItem(sku);
   olCart.appendChild(createCartItemElement({ name: title, sku: id, salePrice: price }));

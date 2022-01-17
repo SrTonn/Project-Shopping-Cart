@@ -89,6 +89,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin: 40px 0;
+  position: relative;
 }
 
 .item {
