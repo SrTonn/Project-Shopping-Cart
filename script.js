@@ -10,11 +10,11 @@ function createProductImageElement(imageSource) {
   return img;
 }
 
-function createCustomElement(element, className, innerText) {
-  const e = document.createElement(element);
-  e.className = className;
-  e.innerText = innerText;
-  return e;
+function createCustomElement(newElement, className, innerText) {
+  const element = document.createElement(newElement);
+  element.className = className;
+  element.innerText = innerText;
+  return element;
 }
 
 function createProductItemElement({ sku, name, image }) {
