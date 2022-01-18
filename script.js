@@ -100,12 +100,11 @@ async function init() {
     const name = element.title;
     const sku = element.id;
     const image = element.thumbnail.replace(/[A-Z].jpg$/, 'W.webp');
-    sectionItems.appendChild(createProductItemElement({ name, sku, image }));
+    const newSection = createProductItemElement({ name, sku, image })
+    newSection.querySelector('.item__add').addEventListener('click', addItemToCart);
+    sectionItems.appendChild(newSection);
   });
 
-  document.querySelectorAll('.item__add').forEach((button) => {
-    button.addEventListener('click', addItemToCart);
-  });
   localStorageLoad();
   buttonEmptyCart.addEventListener('click', clearCartItems);
 }
