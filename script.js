@@ -14,7 +14,9 @@ function createProductImageElement(imageSource) {
 function createCustomElement(newElement, className, innerText) {
   const element = document.createElement(newElement);
   element.className = className;
-  element.innerText = innerText;
+  if (innerText) {
+    element.innerText = innerText;
+  }
   return element;
 }
 
@@ -35,25 +37,30 @@ function getSkuFromProductItem(item) {
 }
 
 function updatePriceAtCart() {
-  let priceTotal = 0;
-  olCart.childNodes.forEach((element) => {
-    const priceProduct = element.innerText.match(/\$\d*(\.\d{1,})?/)[0];
-    priceTotal += Number(priceProduct.slice(1));
-  });
-  spanPriceTotal.innerHTML = priceTotal;
+  // let priceTotal = 0;
+  // olCart.childNodes.forEach((element) => {
+  //   const priceProduct = element.innerText.match(/\$\d*(\.\d{1,})?/)[0];
+  //   priceTotal += Number(priceProduct.slice(1));
+  // });
+  // spanPriceTotal.innerHTML = priceTotal;
 }
 
 function cartItemClickListener({ target }) {
-  target.remove();
+  target.parentNode.remove();
   saveCartItems(olCart.innerHTML);
   updatePriceAtCart();
 }
 
-function createCartItemElement({ sku, name, salePrice }) {
+function createCartItemElement({ name, image, salePrice }) {
   const li = document.createElement('li');
+  const tagP = createCustomElement('p', '', name);
+  const spanX = createCustomElement('span', 'cart__close-button', 'X');
+  tagP.appendChild(createCustomElement('span', 'cart__item-price', `R$${salePrice}`));
   li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
+  li.appendChild(createProductImageElement(image));
+  li.appendChild(tagP);
+  li.appendChild(spanX);
+  spanX.addEventListener('click', cartItemClickListener);
   return li;
 }
 
@@ -64,9 +71,10 @@ function clearCartItems() {
 }
 
 async function addItemToCart({ target }) {
-  const sku = getSkuFromProductItem(target.parentNode);
-  const { id, title, price } = await fetchItem(sku);
-  olCart.appendChild(createCartItemElement({ name: title, sku: id, salePrice: price }));
+  const getSku = getSkuFromProductItem(target.parentNode);
+  const { title: name, price: salePrice, thumbnail: image } = await fetchItem(getSku);
+  const liItem = createCartItemElement({ name, image, salePrice });
+  olCart.appendChild(liItem);
   saveCartItems(olCart.innerHTML);
   updatePriceAtCart();
 }

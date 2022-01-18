@@ -115,6 +115,33 @@ body {
   text-align: center;
 }
 
+ol , li {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+ol {
+  flex-direction: column;
+}
+
+li > .item__image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  line-height: 20px;
+}
+
+.cart__item-price {
+  margin-top: 15px;
+  display: block;
+  color: rgb(177, 16, 16);
+}
+
+.cart__close-button {
+  cursor: pointer;
+}
+
 .item .item__image {
   width: 100%;
 }
@@ -136,9 +163,17 @@ body {
   height: 100vh;
 }
 
+.cart__items {
+  padding: 5px;
+}
+
 .cart .cart__items {
   height: 500px;
   overflow-y: scroll;
+}
+
+.cart__item {
+  margin: 10px 0;
 }
 
 .empty-cart {
