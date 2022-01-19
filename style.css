@@ -192,3 +192,8 @@ li > .item__image {
   position: absolute;
   top: 50%;
 }
+
+.total-price {
+  margin: 15px;
+  text-align: center;
+}

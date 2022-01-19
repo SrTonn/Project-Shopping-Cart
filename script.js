@@ -37,12 +37,13 @@ function getSkuFromProductItem(item) {
 }
 
 function updatePriceAtCart() {
-  // let priceTotal = 0;
-  // olCart.childNodes.forEach((element) => {
-  //   const priceProduct = element.innerText.match(/\$\d*(\.\d{1,})?/)[0];
-  //   priceTotal += Number(priceProduct.slice(1));
-  // });
-  // spanPriceTotal.innerHTML = priceTotal;
+  let priceTotal = 0;
+  olCart.childNodes.forEach((element) => {
+    const priceProduct = element.innerText.match(/\$\d*(\.\d{1,})?/)[0];
+    priceTotal += Number(priceProduct.slice(1));
+  });
+  spanPriceTotal.innerHTML = priceTotal
+    .toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
 }
 
 function cartItemClickListener({ target }) {
@@ -112,3 +113,8 @@ async function init() {
 window.onload = () => { 
   init();
 };
+
+/**
+ * Referência de como formatar moeda para BRL
+ * Ref.: https://www.horadecodar.com.br/2020/09/01/formatar-moeda-brasileira-em-javascript-float-para-real/
+ */
