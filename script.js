@@ -82,7 +82,7 @@ async function addItemToCart({ target }) {
 
 function localStorageLoad() {
   olCart.innerHTML = getSavedCartItems();
-  olCart.childNodes.forEach((element) => {
+  olCart.querySelectorAll('.cart__close-button').forEach((element) => {
     element.addEventListener('click', cartItemClickListener);
   });
   updatePriceAtCart();
