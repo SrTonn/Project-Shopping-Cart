@@ -323,3 +323,7 @@ li > .item__image {
 
 /* referência dos efeitos aplicado acima */
 /* http://ianlunn.github.io/Hover/#effects */
+
+.no-style {
+  text-decoration: none;
+}
